@@ -1,5 +1,5 @@
 # dom-query
-
+```
 var allOptions = $(); // define allOptions outside any function
 
 // Create a MutationObserver to watch for changes to #secondary-dc
