@@ -3,13 +3,15 @@
 ```
 var allOptions = $(); // define allOptions outside any function
 
-function updateSecondaryDCOptions() {
-    // Code to update #secondary-dc options...
-
+// Create a MutationObserver to watch for changes to #secondary-dc
+var observer = new MutationObserver(function() {
     // After the options are updated, clone them
     allOptions = $("#secondary-dc option").clone();
     console.log("Options updated", allOptions);
-}
+});
+
+// Start observing #secondary-dc for changes
+observer.observe($("#secondary-dc")[0], { childList: true });
 
 $("#primary-dc").on("change", function () {
     console.log("Primary dropdown changed");
@@ -33,6 +35,7 @@ $("#primary-dc").on("change", function () {
         console.log("No options to restore");
     }
 });
+
 
 ```
 ```
