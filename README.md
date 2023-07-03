@@ -8,12 +8,15 @@ function updateSecondaryDCOptions() {
 
     // After the options are updated, clone them
     allOptions = $("#secondary-dc option").clone();
+    console.log("Options updated", allOptions);
 }
 
 $("#primary-dc").on("change", function () {
+    console.log("Primary dropdown changed");
     if(allOptions.length > 0) {
         // Store selected value
         var selectedValue = $(this).val();
+        console.log("Selected value", selectedValue);
 
         // Store current selected option in secondary dropdown
         var secondarySelectedValue = $("#secondary-dc").val();
@@ -26,9 +29,10 @@ $("#primary-dc").on("change", function () {
 
         // Reselect the previous selected option in secondary dropdown
         $("#secondary-dc").val(secondarySelectedValue);
+    } else {
+        console.log("No options to restore");
     }
 });
-
 
 ```
 ```
