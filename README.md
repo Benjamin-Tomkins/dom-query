@@ -1,6 +1,34 @@
 # dom-query
 
 ```
+function updateSecondaryDCOptions() {
+    // Code to update #secondary-dc options...
+
+    // After the options are updated, clone them
+    allOptions = $("#secondary-dc option").clone();
+}
+
+$("#primary-dc").on("change", function () {
+    if(allOptions.length > 0) {
+        // Store selected value
+        var selectedValue = $(this).val();
+
+        // Store current selected option in secondary dropdown
+        var secondarySelectedValue = $("#secondary-dc").val();
+
+        // Restore original options in the secondary dropdown
+        $("#secondary-dc").empty().append(allOptions.clone());
+
+        // Find and remove the matching option in the secondary dropdown
+        $("#secondary-dc option[value='" + selectedValue + "']").remove();
+
+        // Reselect the previous selected option in secondary dropdown
+        $("#secondary-dc").val(secondarySelectedValue);
+    }
+});
+
+```
+```
 var allOptions = $();
 
 // Create a MutationObserver instance
