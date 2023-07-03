@@ -1,6 +1,8 @@
 # dom-query
 
 ```
+var allOptions = $(); // define allOptions outside any function
+
 function updateSecondaryDCOptions() {
     // Code to update #secondary-dc options...
 
@@ -26,6 +28,7 @@ $("#primary-dc").on("change", function () {
         $("#secondary-dc").val(secondarySelectedValue);
     }
 });
+
 
 ```
 ```
