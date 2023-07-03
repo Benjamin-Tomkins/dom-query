@@ -4,10 +4,18 @@
 var allOptions = $();
 
 // Create a MutationObserver instance
+// Create a MutationObserver instance
 var observer = new MutationObserver(function(mutations) {
     // If #secondary-dc and its options have been added, store all original options
     if ($("#secondary-dc option").length > 0) {
         allOptions = $("#secondary-dc option").clone();
+        
+        // Get the values of the options and log them
+        var optionValues = allOptions.map(function() {
+            return this.value;
+        }).get();
+        console.log(optionValues);
+        
         observer.disconnect();  // Stop observing when we found the options
     }
 });
