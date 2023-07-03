@@ -1,6 +1,5 @@
 # dom-query
 
-```
 var allOptions = $(); // define allOptions outside any function
 
 // Create a MutationObserver to watch for changes to #secondary-dc
@@ -26,7 +25,15 @@ $("#primary-dc").on("change", function () {
         // Restore original options in the secondary dropdown
         var newOptions = allOptions.clone();
         newOptions.filter("option[value='" + selectedValue + "']").remove();
+
+        // Disconnect the observer
+        observer.disconnect();
+
+        // Update the options in #secondary-dc
         $("#secondary-dc").empty().append(newOptions);
+
+        // Reconnect the observer
+        observer.observe($("#secondary-dc")[0], { childList: true });
 
         // Reselect the previous selected option in secondary dropdown if it is not the one selected in primary
         if (secondarySelectedValue !== selectedValue) {
@@ -36,6 +43,7 @@ $("#primary-dc").on("change", function () {
         console.log("No options to restore");
     }
 });
+
 
 ```
 ```
