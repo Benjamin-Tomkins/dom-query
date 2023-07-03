@@ -24,18 +24,18 @@ $("#primary-dc").on("change", function () {
         var secondarySelectedValue = $("#secondary-dc").val();
 
         // Restore original options in the secondary dropdown
-        $("#secondary-dc").empty().append(allOptions.clone());
+        var newOptions = allOptions.clone();
+        newOptions.filter("option[value='" + selectedValue + "']").remove();
+        $("#secondary-dc").empty().append(newOptions);
 
-        // Find and remove the matching option in the secondary dropdown
-        $("#secondary-dc option[value='" + selectedValue + "']").remove();
-
-        // Reselect the previous selected option in secondary dropdown
-        $("#secondary-dc").val(secondarySelectedValue);
+        // Reselect the previous selected option in secondary dropdown if it is not the one selected in primary
+        if (secondarySelectedValue !== selectedValue) {
+            $("#secondary-dc").val(secondarySelectedValue);
+        }
     } else {
         console.log("No options to restore");
     }
 });
-
 
 ```
 ```
